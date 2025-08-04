@@ -6,8 +6,12 @@ require_once __DIR__."/../model/Curso.php";
 class CursoDAO{
 
 
+
+
+
+    
     public static function listar(string $string){
-        $sql = "SELECT $string FROM cursos";
+        $sql = "SELECT $string FROM cursos ORDER BY nome";
         $stm = Connection::getConn()->prepare($sql);
         $stm->execute();
         $result = $stm->fetchAll();

@@ -13,4 +13,13 @@ class AlunoController{
     public static function listar(string $string = 'a.*'){
         return AlunoDAO::listar($string);
     }
+    public static function insert(Aluno $aluno){
+        $erros = [];
+        $erro = AlunoDAO::insert($aluno);
+        if($erro){
+            $erros[] = "Erro ao salvar o Aluno";
+            AMB_DEV ? $erros[]= $erro->getMessage() : null; 
+        }
+        return $erros;
+    }
 }

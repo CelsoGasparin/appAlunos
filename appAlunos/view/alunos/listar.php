@@ -15,6 +15,13 @@ include_once __DIR__."/../include/header.php";
 ?>
 
     <h1>Listagens insanas</h1>
+
+
+    <div>
+        <a href="inserir.php">Inserilson</a>
+    </div>
+
+
     
     <table border="1">
         <!-- Cabecalho -->
