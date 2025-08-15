@@ -27,15 +27,29 @@ class AlunoDAO{
         }
     }
 
+    public static function alterar(Aluno $aluno){
+
+    }
+
 
     public static function listar(string $string){
         // $sql = "SELECT $string FROM alunos";
-        $sql = "SELECT $string,c.nome nome_curso, c.turno turno_curso FROM alunos a JOIN cursos c ON (c.id = a.id_curso)";
+        $sql = "SELECT $string,c.nome nome_curso, c.turno turno_curso FROM alunos a JOIN cursos c ON (c.id = a.id_curso) ORDER BY c.nome,a.nome";
         $stm = Connection::getConn()->prepare($sql);
         $stm->execute();
         $result = $stm->fetchAll();
 
         return AlunoDAO::map($result);
+    }
+
+    public static function getById($id){
+        $sql = "SELECT a.*,c.nome nome_curso, c.turno turno_curso FROM alunos a JOIN cursos c on (c.id = a.id_curso) WHERE a.id = ?";
+        $stm = Connection::getConn()->prepare($sql);
+        $stm->execute([$id]);
+        $result = $stm->fetchAll();
+        $aluno = AlunoDAO::map($result);
+        
+        return count($aluno) > 0 ? $aluno[0] : null;
     }
 
     private static function map($result){

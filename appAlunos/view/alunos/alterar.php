@@ -1,11 +1,16 @@
 <?php
-require_once __DIR__.'/../../controller/AlunoController.php';
-require_once __DIR__.'/../../model/Aluno.php';
-$humForm = 'Inserir Aluno';
+require_once __DIR__."/../../model/Aluno.php";
+require_once __DIR__."/../../controller/AlunoController.php";
+$humForm = "Alterar Aluno";
 $msgErro = "";
 $aluno = null;
-print"<a href='listar.php'>Voltar</a>";
+
+
+
+
 if($_POST!==[]){
+
+    $id = 0;
     $nome    = trim($_POST['nome'])? trim($_POST['nome']): null;
     $idade   = is_numeric($_POST['idade']) ? $_POST['idade']:null;
     $estrang = trim($_POST['estrang']) ? trim($_POST['estrang']):null;
@@ -17,8 +22,7 @@ if($_POST!==[]){
     // Cria um Objeto Aluno
     $aluno = new Aluno(null,$nome,$idade,$estrang,$curso);
 
-
-    $erros = AlunoController::insert($aluno);
+    exit;
 
     if(!$erros){
         // Redireciona para o listar.php
@@ -28,12 +32,14 @@ if($_POST!==[]){
         $msgErro = join("<br>",$erros);
         // print $msgErro;
     }
+}else {
+    isset($_GET['id']) ? $id = $_GET['id'] : header('location:listar.php');
+    
+    $aluno = AlunoController::getById($id);
+    
+    isset($aluno) ? null: header('location:listar.php');
+    
+    // print $id;
+    // exit;
 }
-
-
-
-
-
-
-
 require_once __DIR__."/form.php";
