@@ -43,7 +43,23 @@ class AlunoController{
         // exit;
         $erro = AlunoDAO::alterar($aluno);
         if($erro){
-            $erros[] = "Erro ao salvar o Aluno";
+            $erros[] = "Erro ao Editar o Aluno";
+            AMB_DEV ? $erros[]= $erro->getMessage() : null; 
+        }
+        return $erros;
+    }
+    public static function delete(Aluno $aluno,$condicao ='id'){
+        $erros = [];
+        $erros = AlunoService::validarAluno($aluno);
+
+        if($erros!==[]){
+            return $erros;
+        }
+        // print_r($erros);
+        // exit;
+        $erro = AlunoDAO::delete($aluno,$condicao);
+        if($erro){
+            $erros[] = "Erro ao deletar o Aluno";
             AMB_DEV ? $erros[]= $erro->getMessage() : null; 
         }
         return $erros;

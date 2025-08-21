@@ -41,6 +41,8 @@ require_once __DIR__."/../include/header.php";
         </select>
     </div>
     
+    <input type="hidden" name='id' value="<?= $aluno ? $aluno->getId() : 0 ;?>">
+
     <div>
         <button type="submit">Submit</button>
     </div>

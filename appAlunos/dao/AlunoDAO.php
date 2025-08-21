@@ -28,7 +28,25 @@ class AlunoDAO{
     }
 
     public static function alterar(Aluno $aluno){
+        try{
+            $sql = "UPDATE alunos SET nome = ? ,idade = ? ,estrangeiro = ? ,id_curso = ?  WHERE id = ?";
+            $stm = Connection::getConn()->prepare($sql);
+            $stm->execute([$aluno->getNome(),$aluno->getIdade(),$aluno->getEstrangeiro(),$aluno->getCurso()->getId(),$aluno->getId()]);
+            return null;
+        }catch(PDOException $e){
+            return $e;
+        }
+    }
 
+    public static function delete(Aluno $aluno ,$condicao){
+        try{
+            $sql = "DELETE FROM alunos WHERE $condicao = ?";
+            $stm = Connection::getConn()->prepare($sql);
+            $stm->execute([$aluno->getId()]);
+            return null;
+        }catch(PDOException $e){
+            return $e;
+        }
     }
 
 
