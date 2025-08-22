@@ -4,7 +4,7 @@ require_once __DIR__.'/../../model/Aluno.php';
 $humForm = 'Inserir Aluno';
 $msgErro = "";
 $aluno = null;
-print"<a href='listar.php'>Voltar</a>";
+
 if($_POST!==[]){
     $nome    = trim($_POST['nome'])? trim($_POST['nome']): null;
     $idade   = is_numeric($_POST['idade']) ? $_POST['idade']:null;

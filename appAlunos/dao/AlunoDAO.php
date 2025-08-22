@@ -4,6 +4,7 @@
 
 require_once __DIR__."/../util/Connection.php";
 require_once __DIR__."/../model/Aluno.php";
+require_once __DIR__."/../model/Curso.php";
 
 
 class AlunoDAO{
@@ -42,7 +43,16 @@ class AlunoDAO{
         try{
             $sql = "DELETE FROM alunos WHERE $condicao = ?";
             $stm = Connection::getConn()->prepare($sql);
-            $stm->execute([$aluno->getId()]);
+            switch(strtolower($condicao)){
+                case'id_curso':
+                    $stm->execute([$aluno->getCurso()->getId()]);
+                break;
+                
+                default:
+                    $metodo = 'get'.ucfirst($condicao);
+                    $stm->execute([$aluno->$metodo()]);
+                break;
+            }
             return null;
         }catch(PDOException $e){
             return $e;

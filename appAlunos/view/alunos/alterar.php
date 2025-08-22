@@ -35,7 +35,7 @@ if($_POST!==[]){
     
     $aluno = AlunoController::getById($id);
     
-    isset($aluno) ? null: header('location:listar.php');
+    $aluno ? null: header('location:listar.php');
 
 }
 require_once __DIR__."/form.php";

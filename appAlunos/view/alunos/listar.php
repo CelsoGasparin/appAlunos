@@ -23,7 +23,7 @@ include_once __DIR__."/../include/header.php";
 
 
     
-    <table border="1">
+    <table class="table table-striped">
         <!-- Cabecalho -->
         <tr>
             <th>ID</th>
@@ -31,8 +31,8 @@ include_once __DIR__."/../include/header.php";
             <th>Idade</th>
             <th>Estrangeiro</th>
             <th>Curso</th>
-            <th></th>
-            <th></th>
+            <th>Alterar</th>
+            <th>DELETE</th>
         </tr>
         <!-- Dados -->
 

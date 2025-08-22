@@ -49,14 +49,7 @@ class AlunoController{
         return $erros;
     }
     public static function delete(Aluno $aluno,$condicao ='id'){
-        $erros = [];
-        $erros = AlunoService::validarAluno($aluno);
 
-        if($erros!==[]){
-            return $erros;
-        }
-        // print_r($erros);
-        // exit;
         $erro = AlunoDAO::delete($aluno,$condicao);
         if($erro){
             $erros[] = "Erro ao deletar o Aluno";
