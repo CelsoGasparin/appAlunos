@@ -1,0 +1,8 @@
+function buscarPorId(\$id){
+                    \$sql = "SELECT * FROM {$nomeTabela} WHERE {$campoId} = ?";
+                    \$stm = \$this->con->prepare(\$sql);
+                    \$stm->execute([\$id]);
+                    \$dados = \$stm->fetch(PDO::FETCH_ASSOC);
+
+                    return \$dados;
+                }
